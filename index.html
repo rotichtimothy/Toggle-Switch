@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Switch</title>
+    <style>
+        /* Centering the toggle button */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0e0f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .toggle-wrapper {
+            display: inline-block;
+            position: relative;
+            width: 90px;
+            height: 45px;
+        }
+
+        .toggle-wrapper input {
+            display: none;
+        }
+
+        .toggle-wrapper .toggle-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            border-radius: 30px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-wrapper .toggle-circle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 37px;
+            height: 37px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .toggle-wrapper .toggle-circle .toggle-icon {
+            font-size: 20px;
+            color: #ff4b2b;
+            transition: color 0.3s;
+        }
+
+        .toggle-wrapper input:checked + .toggle-bg {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 114, 255, 0.6);
+        }
+
+        .toggle-wrapper input:checked + .toggle-bg + .toggle-circle {
+            transform: translateX(45px);
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+        }
+
+        .toggle-wrapper input:checked + .toggle-bg + .toggle-circle .toggle-icon {
+            color: #0072ff;
+        }
+
+        .toggle-wrapper input:not(:checked) + .toggle-bg + .toggle-circle .toggle-icon {
+            content: '\2716'; /* Cross */
+        }
+
+        .toggle-wrapper input:checked + .toggle-bg + .toggle-circle .toggle-icon {
+            content: '\2713'; /* Checkmark */
+        }
+    </style>
+</head>
+<body>
+    <label class="toggle-wrapper">
+        <input type="checkbox">
+        <div class="toggle-bg"></div>
+        <div class="toggle-circle">
+            <span class="toggle-icon">&#x2716;</span> <!-- Cross icon -->
+        </div>
+    </label>
+
+    <script>
+        const toggleInput = document.querySelector(".toggle-wrapper input");
+        const toggleIcon = document.querySelector(".toggle-circle .toggle-icon");
+
+        toggleInput.addEventListener("change", function() {
+            if (this.checked) {
+                toggleIcon.innerHTML = "&#x2713;"; // Checkmark icon
+            } else {
+                toggleIcon.innerHTML = "&#x2716;"; // Cross icon
+            }
+        });
+    </script>
+</body>
+</html>
